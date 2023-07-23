@@ -1,7 +1,6 @@
 package ru.lopatuxin.scola.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +18,11 @@ import javax.validation.Valid;
 public class RegisterController {
     private final StudentService studentService;
     private final StudentValidator studentValidator;
-    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public RegisterController(StudentService studentService, StudentValidator studentValidator, PasswordEncoder passwordEncoder) {
+    public RegisterController(StudentService studentService, StudentValidator studentValidator) {
         this.studentService = studentService;
         this.studentValidator = studentValidator;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping()
@@ -40,7 +37,6 @@ public class RegisterController {
         if (bindingResult.hasErrors()) {
             return "register/register";
         }
-        student.setPassword(passwordEncoder.encode(student.getPassword()));
         studentService.save(student);
         return "auth/login";
     }

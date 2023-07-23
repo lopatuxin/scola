@@ -11,7 +11,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 /**
  * @author Антон
- * Модель данных ученика*/
+ * Модель данных ученика
+ * @field role Данное поле содержит роль юзера в приложении*/
 @Entity
 @Table(name = "Student")
 @Data
@@ -41,4 +42,7 @@ public class Student {
     @Column(name = "date_of_birth")
     @NotEmpty(message = "Ведите дату рождения")
     private String dateOfBirth;
+
+    @Column(name = "role")
+    private String role;
 }
