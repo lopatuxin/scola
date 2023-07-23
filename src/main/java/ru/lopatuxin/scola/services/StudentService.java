@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.repositories.StudentRepository;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 
 @Service

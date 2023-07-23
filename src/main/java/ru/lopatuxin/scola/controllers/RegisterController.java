@@ -11,7 +11,7 @@ import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.services.StudentService;
 import ru.lopatuxin.scola.util.StudentValidator;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/register")
