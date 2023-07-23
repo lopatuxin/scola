@@ -7,6 +7,8 @@ import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.repositories.StudentRepository;
 
 import jakarta.transaction.Transactional;
+
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -24,6 +26,7 @@ public class StudentService {
     public void save(Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
         student.setRole("ROLE_USER");
+        student.setDateOfRegistration(new Date());
         studentRepository.save(student);
     }
 

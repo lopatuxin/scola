@@ -7,6 +7,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
 /**
  * @author Антон
  * Модель данных ученика
@@ -27,6 +30,11 @@ public class Student {
     @Size(min = 3, max = 50, message = "Имя должно быть не меньше 3 символов и не больше 50")
     private String name;
 
+    @Column(name = "surname")
+    @NotEmpty(message = "Введите фамилию")
+    @Size(min = 3, max = 100, message = "Фамилия должна быть не меньше 3 символов и не больше 100")
+    private String surname;
+
     @EqualsAndHashCode.Include
     @Column(name = "email")
     @Email(message = "Не корректная почта")
@@ -43,4 +51,7 @@ public class Student {
 
     @Column(name = "role")
     private String role;
+
+    @Column(name = "date_of_registration")
+    private Date dateOfRegistration;
 }

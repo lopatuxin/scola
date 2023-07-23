@@ -50,6 +50,14 @@
                    aria-describedby="basic-addon4">
           </div>
           <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon5"><i class="bi bi-person-vcard-fill"></i></span>
+            <input type="text" th:field="*{surname}" class="form-control" id="surname" name="surname"
+                   placeholder="Введите вашу фамилию" aria-label="Ваша фамилия"
+                   aria-describedby="basic-addon5">
+          </div>
+          <div style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Error</div>
         </fieldset>
         <div class="d-grid gap-2 pt-2">
           <button class="btn btn-lg btn-success" type="submit">Зарегистрироваться</button>
