@@ -46,12 +46,14 @@ public class Student {
     private String password;
 
     @Column(name = "date_of_birth")
-    @NotEmpty(message = "Ведите дату рождения")
-    private String dateOfBirth;
+    private Date dateOfBirth;
 
     @Column(name = "role")
     private String role;
 
     @Column(name = "date_of_registration")
     private Date dateOfRegistration;
+
+    @Transient
+    private int age;
 }

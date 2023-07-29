@@ -9,6 +9,7 @@ import ru.lopatuxin.scola.repositories.StudentRepository;
 import jakarta.transaction.Transactional;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,5 +33,21 @@ public class StudentService {
 
     public Optional<Student> findByEmail(String email) {
         return studentRepository.findByEmail(email);
+    }
+
+    public List<Student> findAll() {
+        List<Student> students = studentRepository.findAll();
+        for (Student student : students) {
+            student.setAge(getYear(student.getDateOfBirth()));
+        }
+        return students;
+    }
+
+    /**
+     * Данный метод принимает дату рождения и высчитывает из миллисекунд годы по формуле*/
+    private int getYear(Date dateOfBirth) {
+        Date nowDate = new Date();
+        long timeMill = nowDate.getTime() - dateOfBirth.getTime();
+        return (int) ((((timeMill / 1000) / 60) / 60) / 24) / 365;
     }
 }

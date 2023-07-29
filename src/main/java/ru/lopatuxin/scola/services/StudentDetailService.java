@@ -1,6 +1,8 @@
 package ru.lopatuxin.scola.services;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,5 +30,12 @@ public class StudentDetailService implements UserDetailsService {
             throw  new UsernameNotFoundException("Пользователь с таким именем не найден");
         }
         return new StudentDetails(user.get());
+    }
+
+    /**
+     * Метод отдает StudentDetails для того чтобы получить имя юзера*/
+    public StudentDetails getUser(HttpServletRequest request) {
+        var auth = (Authentication) request.getUserPrincipal();
+        return (StudentDetails) auth.getPrincipal();
     }
 }

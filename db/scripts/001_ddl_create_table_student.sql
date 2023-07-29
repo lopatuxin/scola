@@ -3,8 +3,9 @@ create table Student(
                         name varchar(100) not null ,
                         email varchar(200) not null unique ,
                         password varchar(200) not null,
-                        date_of_birth varchar(20) not null,
+                        date_of_birth date not null,
                         role varchar(50) not null,
                         surname varchar(100) not null ,
-                        date_of_registration date
+                        date_of_registration date ,
+                        age int
 )
