@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -46,14 +47,14 @@ public class Student {
     private String password;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(name = "role")
     private String role;
 
     @Column(name = "date_of_registration")
-    private Date dateOfRegistration;
+    private LocalDate dateOfRegistration;
 
     @Transient
-    private int age;
+    private long age;
 }

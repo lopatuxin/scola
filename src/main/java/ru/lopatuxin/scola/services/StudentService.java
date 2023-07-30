@@ -1,14 +1,14 @@
 package ru.lopatuxin.scola.services;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.repositories.StudentRepository;
 
-import jakarta.transaction.Transactional;
-
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +27,7 @@ public class StudentService {
     public void save(Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
         student.setRole("ROLE_USER");
-        student.setDateOfRegistration(new Date());
+        student.setDateOfRegistration(LocalDate.now());
         studentRepository.save(student);
     }
 
@@ -44,10 +44,8 @@ public class StudentService {
     }
 
     /**
-     * Данный метод принимает дату рождения и высчитывает из миллисекунд годы по формуле*/
-    private int getYear(Date dateOfBirth) {
-        Date nowDate = new Date();
-        long timeMill = nowDate.getTime() - dateOfBirth.getTime();
-        return (int) ((((timeMill / 1000) / 60) / 60) / 24) / 365;
+     * Данный метод принимает дату рождения и высчитывает разницу между сегодняшней датой в годах*/
+    private long getYear(LocalDate dateOfBirth) {
+        return ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
     }
 }
