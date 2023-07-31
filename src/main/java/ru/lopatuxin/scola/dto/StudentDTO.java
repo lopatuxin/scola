@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 public class StudentDTO {
@@ -27,6 +29,5 @@ public class StudentDTO {
     @NotEmpty(message = "Введите пароль")
     private String password;
 
-    @NotEmpty(message = "Ведите дату рождения")
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
 }

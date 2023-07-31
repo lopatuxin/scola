@@ -26,7 +26,7 @@ public class StudentService {
     @Transactional
     public void save(Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
-        student.setRole("ROLE_USER");
+        student.setRole("ROLE_GUEST");
         student.setDateOfRegistration(LocalDate.now());
         studentRepository.save(student);
     }
@@ -37,6 +37,14 @@ public class StudentService {
 
     public List<Student> findAll() {
         List<Student> students = studentRepository.findAll();
+        for (Student student : students) {
+            student.setAge(getYear(student.getDateOfBirth()));
+        }
+        return students;
+    }
+
+    public List<Student> findByRole(String role) {
+        List<Student> students = studentRepository.findAllByRole(role);
         for (Student student : students) {
             student.setAge(getYear(student.getDateOfBirth()));
         }

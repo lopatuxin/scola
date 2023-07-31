@@ -33,4 +33,10 @@ public class AdminController {
         return "admin/students";
     }
 
+    @GetMapping("/subscription")
+    public String getStudentsWithSubscription(Model model, HttpServletRequest request) {
+        model.addAttribute("user", studentDetailService.getUser(request));
+        model.addAttribute("students", studentService.findByRole("ROLE_USER"));
+        return "admin/students";
+    }
 }
