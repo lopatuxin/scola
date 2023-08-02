@@ -56,7 +56,9 @@
             <tbody>
             <tr th:each="student : ${students}">
                 <td th:text="${student.getId()}"/>
-                <td th:text="${student.getName()}"/>
+                <td>
+                    <a th:text="${student.getName()}" href="#"/>
+                </td>
                 <td th:text="${student.getSurname()}"/>
                 <td th:text="${student.getAge()}"/>
             </tr>
