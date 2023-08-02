@@ -13,7 +13,7 @@ public record StudentDetails(Student student) implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        return Collections.singletonList(new SimpleGrantedAuthority(student.getRole()));
+        return Collections.singletonList(new SimpleGrantedAuthority(student.getRole().toString()));
     }
 
     @Override

@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.lopatuxin.scola.models.Role;
 import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.repositories.StudentRepository;
 
@@ -26,7 +27,7 @@ public class StudentService {
     @Transactional
     public void save(Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
-        student.setRole("ROLE_GUEST");
+        student.setRole(Role.ROLE_GUEST);
         student.setDateOfRegistration(LocalDate.now());
         studentRepository.save(student);
     }
