@@ -52,4 +52,12 @@ public class Student {
 
     @Transient
     private long age;
+
+    public Student(String name, String surname, String email, String password, LocalDate dateOfBirth) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+    }
 }
