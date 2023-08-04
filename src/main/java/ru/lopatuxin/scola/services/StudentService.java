@@ -52,6 +52,10 @@ public class StudentService {
         return students;
     }
 
+    public void delete(Student student) {
+        studentRepository.delete(student);
+    }
+
     /**
      * Данный метод принимает дату рождения и высчитывает разницу между сегодняшней датой в годах*/
     private long getYear(LocalDate dateOfBirth) {
