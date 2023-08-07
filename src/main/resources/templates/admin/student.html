@@ -6,7 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/cerulean/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-    <title>Admin</title>
+    <title>Student</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -20,16 +20,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="/admin/students" role="button" aria-expanded="false">Ученики</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/admin/subscription">Ученики с подпиской</a></li>
-                        <li><a class="dropdown-item" href="/admin/students">Все ученики</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
-                    </ul>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#"
                        th:text="${user.student().name + ' ' + user.student().surname}">User</a>
@@ -42,5 +32,19 @@
         </div>
     </div>
 </nav>
+<section class="main-content">
+    <div class="container p-3">
+        <div class="card border-dark">
+            <div class="card-body">
+                <h5 class="card-title" th:text="|${student.getName()} ${student.getSurname()}|">Название карточки</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:text="${student.getAge()}">An item</li>
+                    <li class="list-group-item" th:text="${student.getDateOfRegistration()}">A second item</li>
+                    <li class="list-group-item" th:text="${student.getEmail()}">A third item</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

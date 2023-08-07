@@ -52,6 +52,12 @@ public class StudentService {
         return students;
     }
 
+    public Optional<Student> findById(int id) {
+        Optional<Student> student = studentRepository.findById(id);
+        student.get().setAge(getYear(student.get().getDateOfBirth()));
+        return student;
+    }
+
     public void delete(Student student) {
         studentRepository.delete(student);
     }

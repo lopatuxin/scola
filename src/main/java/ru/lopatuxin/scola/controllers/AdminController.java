@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.lopatuxin.scola.services.StudentDetailService;
 import ru.lopatuxin.scola.services.StudentService;
@@ -33,10 +34,17 @@ public class AdminController {
         return "admin/students";
     }
 
-    @GetMapping("/subscription")
+    @GetMapping("/students/subscription")
     public String getStudentsWithSubscription(Model model, HttpServletRequest request) {
         model.addAttribute("user", studentDetailService.getUser(request));
         model.addAttribute("students", studentService.findByRole("ROLE_USER"));
         return "admin/students";
+    }
+
+    @GetMapping("/students/{id}")
+    public String getStudent(@PathVariable int id, Model model, HttpServletRequest request) {
+        model.addAttribute("user", studentDetailService.getUser(request));
+        model.addAttribute("student", studentService.findById(id).get());
+        return "admin/student";
     }
 }

@@ -42,7 +42,6 @@ class StudentServiceTest {
     }
 
     @Test
-    @Order(0)
     void save() {
         studentService.save(student);
         assertThat(student).isEqualTo(studentService.findByEmail(student.getEmail()).get());

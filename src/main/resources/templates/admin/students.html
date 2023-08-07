@@ -23,7 +23,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Ученики</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/admin/subscription">Ученики с подпиской</a></li>
+                        <li><a class="dropdown-item" href="/admin/students/subscription">Ученики с подпиской</a></li>
                         <li><a class="dropdown-item" href="/admin/students">Все ученики</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -37,7 +37,7 @@
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-outline-success" type="submit">Поиск</button>
             </form>
         </div>
     </div>
@@ -57,7 +57,7 @@
             <tr th:each="student : ${students}">
                 <td th:text="${student.getId()}"/>
                 <td>
-                    <a th:text="${student.getName()}" href="#"/>
+                    <a th:href="@{/admin/students/{id}(id=${student.getId()})}" th:text="${student.getName()}"/>
                 </td>
                 <td th:text="${student.getSurname()}"/>
                 <td th:text="${student.getAge()}"/>
