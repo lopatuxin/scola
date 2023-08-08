@@ -1,8 +1,6 @@
 package ru.lopatuxin.scola.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -29,5 +27,7 @@ public class StudentDTO {
     @NotEmpty(message = "Введите пароль")
     private String password;
 
+    @Past(message = "Введите корректную дату рождения")
+    @NotNull(message = "Введите дату рождения")
     private LocalDate dateOfBirth;
 }

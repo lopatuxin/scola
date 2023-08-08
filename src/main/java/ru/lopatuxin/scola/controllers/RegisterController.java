@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.lopatuxin.scola.dto.StudentDTO;
 import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.services.StudentService;
@@ -23,7 +24,8 @@ public class RegisterController {
     private final ModelMapper modelMapper;
 
     @Autowired
-    public RegisterController(StudentService studentService, StudentValidator studentValidator, ModelMapper modelMapper) {
+    public RegisterController(StudentService studentService,
+                              StudentValidator studentValidator, ModelMapper modelMapper) {
         this.studentService = studentService;
         this.studentValidator = studentValidator;
         this.modelMapper = modelMapper;

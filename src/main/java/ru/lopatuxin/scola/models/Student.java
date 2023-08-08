@@ -1,9 +1,7 @@
 package ru.lopatuxin.scola.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -42,6 +40,8 @@ public class Student {
     private String password;
 
     @Column(name = "date_of_birth")
+    @Past(message = "Введите корректную дату рождения")
+    @NotNull(message = "Введите дату рождения")
     private LocalDate dateOfBirth;
 
     @Enumerated(EnumType.STRING)
