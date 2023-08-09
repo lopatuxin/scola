@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import ru.lopatuxin.scola.models.Role;
+
+import static ru.lopatuxin.scola.models.Role.*;
 
 @Configuration
 @EnableWebSecurity
@@ -16,11 +19,11 @@ public class SecurityConfig {
     protected SecurityFilterChain filterChain(HttpSecurity  http) throws Exception {
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/admin").hasRole("ADMIN")
-                        .requestMatchers("/hello").hasRole("GUEST")
+                        .requestMatchers("/admin/**").hasAuthority(ADMIN.getAuthority())
+                        .requestMatchers("/hello").hasAuthority(GUEST.getAuthority())
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/register").permitAll()
-                        .anyRequest().hasAnyRole("USER", "ADMIN"))
+                        .anyRequest().hasAnyAuthority(USER.getAuthority(), ADMIN.getAuthority()))
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/login")
                         .loginProcessingUrl("/login/ok")

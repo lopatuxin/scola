@@ -1,5 +1,12 @@
 package ru.lopatuxin.scola.models;
 
-public enum Role {
-    ROLE_GUEST, ROLE_USER, ROLE_ADMIN
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
+    GUEST, USER, ADMIN;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }

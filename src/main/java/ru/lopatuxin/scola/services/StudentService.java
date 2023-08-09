@@ -27,7 +27,7 @@ public class StudentService {
     @Transactional
     public void save(Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
-        student.setRole(Role.ROLE_GUEST);
+        student.setRole(Role.GUEST);
         student.setDateOfRegistration(LocalDate.now());
         studentRepository.save(student);
     }
