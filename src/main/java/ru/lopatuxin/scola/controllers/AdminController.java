@@ -51,7 +51,8 @@ public class AdminController {
     }
 
     @GetMapping("/blocks/create")
-    public String createBlock(@ModelAttribute("block")Block block) {
+    public String createBlock(@ModelAttribute("block")Block block, Model model, HttpServletRequest request) {
+        model.addAttribute("user", studentDetailService.getUser(request));
         return "admin/createBlock";
     }
 }
