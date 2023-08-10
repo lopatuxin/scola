@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.lopatuxin.scola.models.Block;
 import ru.lopatuxin.scola.models.Role;
+import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.services.StudentService;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,7 +27,8 @@ public class AdminController {
 
     @ModelAttribute("user")
     public String getUser(@AuthenticationPrincipal UserDetails userDetails) {
-        return userDetails.getUsername();
+        Optional<Student> student = studentService.findByEmail(userDetails.getUsername());
+        return student.map(value -> value.getName() + " " + value.getSurname()).orElse("User");
     }
 
     @GetMapping()
