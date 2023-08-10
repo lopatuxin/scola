@@ -31,11 +31,4 @@ public class StudentDetailService implements UserDetailsService {
         }
         return new StudentDetails(user.get());
     }
-
-    /**
-     * Метод отдает StudentDetails для того чтобы получить имя юзера*/
-    public StudentDetails getUser(HttpServletRequest request) {
-        var auth = (Authentication) request.getUserPrincipal();
-        return (StudentDetails) auth.getPrincipal();
-    }
 }

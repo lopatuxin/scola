@@ -1,6 +1,7 @@
 package ru.lopatuxin.scola.controllers;
 
-import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,8 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.lopatuxin.scola.models.Block;
-import ru.lopatuxin.scola.security.StudentDetails;
-import ru.lopatuxin.scola.services.StudentDetailService;
+import ru.lopatuxin.scola.models.Role;
 import ru.lopatuxin.scola.services.StudentService;
 
 @Controller
@@ -17,16 +17,14 @@ import ru.lopatuxin.scola.services.StudentService;
 public class AdminController {
 
     private final StudentService studentService;
-    private final StudentDetailService studentDetailService;
 
-    public AdminController(StudentService studentService, StudentDetailService studentDetailService) {
+    public AdminController(StudentService studentService) {
         this.studentService = studentService;
-        this.studentDetailService = studentDetailService;
     }
 
     @ModelAttribute("user")
-    public StudentDetails getUser(HttpServletRequest request) {
-        return studentDetailService.getUser(request);
+    public String getUser(@AuthenticationPrincipal UserDetails userDetails) {
+        return userDetails.getUsername();
     }
 
     @GetMapping()
@@ -42,7 +40,7 @@ public class AdminController {
 
     @GetMapping("/students/subscription")
     public String getStudentsWithSubscription(Model model) {
-        model.addAttribute("students", studentService.findByRole("ROLE_USER"));
+        model.addAttribute("students", studentService.findByRole(Role.USER));
         return "admin/students";
     }
 

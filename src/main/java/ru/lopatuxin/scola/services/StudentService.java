@@ -44,7 +44,7 @@ public class StudentService {
         return students;
     }
 
-    public List<Student> findByRole(String role) {
+    public List<Student> findByRole(Role role) {
         List<Student> students = studentRepository.findAllByRole(role);
         for (Student student : students) {
             student.setAge(getYear(student.getDateOfBirth()));
