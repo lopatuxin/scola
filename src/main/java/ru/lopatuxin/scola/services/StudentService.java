@@ -58,8 +58,14 @@ public class StudentService {
         return student;
     }
 
+    @Transactional
     public void delete(Student student) {
         studentRepository.delete(student);
+    }
+
+    @Transactional
+    public void updateStudentByRole(String role, int id) {
+        studentRepository.updateStudentByRole(role, id);
     }
 
     /**

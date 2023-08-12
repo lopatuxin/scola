@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<div th:insert="~{fragment/nav :: navigation}"></div>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <form class="mt-3" method="post" th:action="@{/admin/students/update/{id}(id=${student.getId()})}">
+                <input type="hidden" name="id" th:value="${student.getId()}">
+                <h4 style="color: black" class="text-center" th:text="|${student.getName()} ${student.getSurname()}|"/>
+                <hr/>
+                <select class="form-select" aria-label="Изменить роль" name="role">
+                    <option selected>Откройте меню</option>
+                    <option value="GUEST">GUEST</option>
+                    <option value="USER">USER</option>
+                    <option value="ADMIN">ADMIN</option>
+                </select>
+                <div class="d-grid gap-2 pt-2">
+                    <button class="btn btn-lg btn-success" type="submit">Сохранить</button>
+                    <a class="btn btn-lg btn-danger" th:href="@{/admin/students/{id}(id=${student.getId()})}" role="button">Отмена</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

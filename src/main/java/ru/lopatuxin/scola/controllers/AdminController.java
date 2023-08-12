@@ -4,10 +4,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.lopatuxin.scola.models.Block;
 import ru.lopatuxin.scola.models.Role;
 import ru.lopatuxin.scola.models.Student;
@@ -57,5 +54,17 @@ public class AdminController {
     @GetMapping("/blocks/create")
     public String createBlock(@ModelAttribute("block")Block block) {
         return "admin/createBlock";
+    }
+
+    @GetMapping("/students/update/{id}")
+    public String getUpdateStudentPage(@PathVariable("id") int id, Model model) {
+        model.addAttribute("student", studentService.findById(id).get());
+        return "admin/editStudent";
+    }
+
+    @PostMapping("/students/update/{id}")
+    public String updateStudent(@RequestParam("id") int id, @RequestParam("role") String role) {
+        studentService.updateStudentByRole(role, id);
+        return "admin/students";
     }
 }
