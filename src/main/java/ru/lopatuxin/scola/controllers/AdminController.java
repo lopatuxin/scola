@@ -71,9 +71,15 @@ public class AdminController {
         return "admin/editStudent";
     }
 
-    @PostMapping("/students/update/{id}")
+    @PostMapping("/students/update")
     public String updateStudent(@RequestParam("id") int id, @RequestParam("role") String role) {
         studentService.updateStudentByRole(role, id);
         return "admin/students";
+    }
+
+    @GetMapping("/blocks")
+    public String getBlocks(Model model) {
+        model.addAttribute("blocks", blockService.findAll());
+        return "admin/blocks";
     }
 }

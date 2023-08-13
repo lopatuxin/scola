@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import ru.lopatuxin.scola.models.Block;
 import ru.lopatuxin.scola.repositories.BlockRepository;
 
+import java.util.List;
+
 @Service
 public class BlockService {
 
@@ -19,5 +21,9 @@ public class BlockService {
     @Transactional
     public void create(Block block) {
         blockRepository.save(block);
+    }
+
+    public List<Block> findAll() {
+        return blockRepository.findAll();
     }
 }

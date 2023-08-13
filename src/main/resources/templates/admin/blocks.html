@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<title>Students</title>
+<title>Blocks</title>
 <div th:insert="~{fragment/nav :: navigation}"></div>
 <body>
 <section class="main-content">
@@ -10,18 +10,14 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Имя</th>
-                <th scope="col">Фамилия</th>
-                <th scope="col">Возраст</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="student : ${students}">
-                <td th:text="${student.getId()}"/>
+            <tr th:each="block : ${blocks}">
+                <td th:text="${block.getId()}"/>
                 <td>
-                    <a th:href="@{/admin/students/{id}(id=${student.getId()})}" th:text="${student.getName()}"/>
+                    <a th:href="@{/admin/blocks/{id}(id=${block.getId()})}" th:text="${block.getName()}"/>
                 </td>
-                <td th:text="${student.getSurname()}"/>
-                <td th:text="${student.getAge()}"/>
             </tr>
             </tbody>
         </table>

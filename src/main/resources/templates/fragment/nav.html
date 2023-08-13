@@ -9,7 +9,6 @@
                 crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/cerulean/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-        <title>createBlock</title>
     </head>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -29,15 +28,15 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/admin/students/subscription">Ученики с подпиской</a></li>
                             <li><a class="dropdown-item" href="/admin/students">Все ученики</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Separated link</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/blocks/create">Создать блок</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="/admin/blocks/create"
+                           role="button" aria-expanded="false">Блок</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/blocks/create">Создать блок</a></li>
+                            <li><a class="dropdown-item" href="/admin/blocks">Блоки</a></li>
+                        </ul>
                     </li>
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
