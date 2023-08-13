@@ -1,8 +1,8 @@
 package ru.lopatuxin.scola.services;
 
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ class StudentServiceTest {
     private final StudentService studentService;
     private Student student;
 
+
     @BeforeAll
     public void init () {
         student =
@@ -33,7 +34,7 @@ class StudentServiceTest {
                         LocalDate.of(1989, 4, 3));
     }
 
-    @BeforeAll
+    @AfterEach
     public void clear() {
         List<Student> students = studentService.findAll();
         for (Student student : students) {
@@ -49,12 +50,14 @@ class StudentServiceTest {
 
     @Test
     void whenSaveStudentAddRoleGuest() {
+        studentService.save(student);
         Student expected = studentService.findByEmail(student.getEmail()).get();
-        assertThat("ROLE_GUEST").isEqualTo(expected.getRole().toString());
+        assertThat("GUEST").isEqualTo(expected.getRole().toString());
     }
 
     @Test
     void whenSaveStudentAddDateRegistration() {
+        studentService.save(student);
         Student expected = studentService.findByEmail(student.getEmail()).get();
         assertThat(expected.getDateOfRegistration()).isNotNull();
     }
@@ -64,4 +67,5 @@ class StudentServiceTest {
         studentService.delete(student);
         assertThat(studentService.findByEmail(student.getEmail())).isEmpty();
     }
+
 }

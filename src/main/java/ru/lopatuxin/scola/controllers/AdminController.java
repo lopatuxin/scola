@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.lopatuxin.scola.models.Block;
 import ru.lopatuxin.scola.models.Role;
 import ru.lopatuxin.scola.models.Student;
+import ru.lopatuxin.scola.services.BlockService;
 import ru.lopatuxin.scola.services.StudentService;
 
 import java.util.Optional;
@@ -17,9 +18,11 @@ import java.util.Optional;
 public class AdminController {
 
     private final StudentService studentService;
+    private final BlockService blockService;
 
-    public AdminController(StudentService studentService) {
+    public AdminController(StudentService studentService, BlockService blockService) {
         this.studentService = studentService;
+        this.blockService = blockService;
     }
 
     @ModelAttribute("user")
@@ -52,8 +55,14 @@ public class AdminController {
     }
 
     @GetMapping("/blocks/create")
-    public String createBlock(@ModelAttribute("block")Block block) {
+    public String getCreateBlockPage(@ModelAttribute("block")Block block) {
         return "admin/createBlock";
+    }
+
+    @PostMapping("/blocks/create")
+    public String createBlock(@ModelAttribute("block") Block block) {
+        blockService.create(block);
+        return "redirect:/admin";
     }
 
     @GetMapping("/students/update/{id}")
