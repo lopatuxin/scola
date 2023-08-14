@@ -54,6 +54,24 @@ public class AdminController {
         return "admin/student";
     }
 
+    @GetMapping("/students/update/{id}")
+    public String getUpdateStudentPage(@PathVariable("id") int id, Model model) {
+        model.addAttribute("student", studentService.findById(id).get());
+        return "admin/editStudent";
+    }
+
+    @PostMapping("/students/update")
+    public String updateStudent(@RequestParam("id") int id, @RequestParam("role") String role) {
+        studentService.updateStudentByRole(role, id);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/blocks")
+    public String getBlocks(Model model) {
+        model.addAttribute("blocks", blockService.findAll());
+        return "admin/blocks";
+    }
+
     @GetMapping("/blocks/create")
     public String getCreateBlockPage(@ModelAttribute("block")Block block) {
         return "admin/createBlock";
@@ -65,21 +83,21 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/students/update/{id}")
-    public String getUpdateStudentPage(@PathVariable("id") int id, Model model) {
-        model.addAttribute("student", studentService.findById(id).get());
-        return "admin/editStudent";
+    @GetMapping("/blocks/edit/{id}")
+    public String getEditPage(@PathVariable("id") int id, Model model) {
+        model.addAttribute("block", blockService.findById(id).get());
+        return "admin/editBlock";
     }
 
-    @PostMapping("/students/update")
-    public String updateStudent(@RequestParam("id") int id, @RequestParam("role") String role) {
-        studentService.updateStudentByRole(role, id);
-        return "admin/students";
+    @PostMapping("/blocks/edit/{id}")
+    public String editBlock(@PathVariable("id") int id, @ModelAttribute("block") Block block) {
+        blockService.update(id, block.getDescription(), block.getName());
+        return "redirect:/admin";
     }
 
-    @GetMapping("/blocks")
-    public String getBlocks(Model model) {
-        model.addAttribute("blocks", blockService.findAll());
-        return "admin/blocks";
+    @GetMapping("/delete/{id}")
+    public String deleteBlock(@PathVariable("id") int id) {
+        blockService.delete(id);
+        return "redirect:/admin";
     }
 }

@@ -19,6 +19,4 @@ public class Block {
 
     private String description;
 
-    @OneToMany
-    private List<Lesson> lessons;
 }

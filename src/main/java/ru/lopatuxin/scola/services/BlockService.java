@@ -7,6 +7,7 @@ import ru.lopatuxin.scola.models.Block;
 import ru.lopatuxin.scola.repositories.BlockRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BlockService {
@@ -25,5 +26,19 @@ public class BlockService {
 
     public List<Block> findAll() {
         return blockRepository.findAll();
+    }
+
+    public Optional<Block> findById(int id) {
+        return blockRepository.findById(id);
+    }
+
+    @Transactional
+    public void update(int id, String desc, String name) {
+        blockRepository.updateBy(id, desc, name);
+    }
+
+    @Transactional
+    public void delete(int id) {
+        blockRepository.deleteById(id);
     }
 }
