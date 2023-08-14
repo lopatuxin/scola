@@ -1,13 +1,17 @@
 package ru.lopatuxin.scola.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.util.List;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Block {
 
     @Id
@@ -19,4 +23,8 @@ public class Block {
 
     private String description;
 
+    public Block(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }

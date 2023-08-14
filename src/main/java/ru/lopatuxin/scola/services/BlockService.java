@@ -1,15 +1,16 @@
 package ru.lopatuxin.scola.services;
 
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lopatuxin.scola.models.Block;
 import ru.lopatuxin.scola.repositories.BlockRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 public class BlockService {
 
     private final BlockRepository blockRepository;
@@ -20,8 +21,8 @@ public class BlockService {
     }
 
     @Transactional
-    public void create(Block block) {
-        blockRepository.save(block);
+    public Block create(Block block) {
+       return blockRepository.save(block);
     }
 
     public List<Block> findAll() {
