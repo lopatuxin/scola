@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -36,12 +37,12 @@ public class StudentService {
         return studentRepository.findByEmail(email);
     }
 
+    /**
+     * Данный метод перед тем как выдать список студентов задает им возраст*/
     public List<Student> findAll() {
-        List<Student> students = studentRepository.findAll();
-        for (Student student : students) {
-            student.setAge(getYear(student.getDateOfBirth()));
-        }
-        return students;
+        return studentRepository.findAll().stream()
+                .peek(student -> student.setAge(getYear(student.getDateOfBirth())))
+                .collect(Collectors.toList());
     }
 
     public List<Student> findByRole(Role role) {
