@@ -1,13 +1,12 @@
 package ru.lopatuxin.scola.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -22,6 +21,9 @@ public class Block {
     private String name;
 
     private String description;
+
+    @OneToMany(mappedBy = "block", cascade = CascadeType.ALL)
+    private List<Lesson> lessons;
 
     public Block(String name, String description) {
         this.name = name;
