@@ -1,8 +1,6 @@
 package ru.lopatuxin.scola.services;
 
 import lombok.RequiredArgsConstructor;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -11,11 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import ru.lopatuxin.scola.models.Block;
 
-import java.util.List;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -27,10 +21,8 @@ class BlockServiceTest {
 
     @AfterEach
     public void clear() {
-        List<Block> blocks = blockService.findAll();
-        for (Block block : blocks) {
-            blockService.delete(block.getId());
-        }
+        blockService.findAll()
+                .forEach(block -> blockService.delete(block.getId()));
     }
 
     @Test

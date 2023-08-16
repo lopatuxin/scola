@@ -11,7 +11,6 @@ import org.springframework.test.context.ActiveProfiles;
 import ru.lopatuxin.scola.models.Student;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -38,10 +37,8 @@ class StudentServiceTest {
 
     @AfterEach
     public void clear() {
-        List<Student> students = studentService.findAll();
-        for (Student student : students) {
-            studentService.delete(student);
-        }
+        studentService.findAll()
+                .forEach(studentService::delete);
     }
 
     @Test
