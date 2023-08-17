@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.lopatuxin.scola.models.Block;
+import ru.lopatuxin.scola.models.Lesson;
 import ru.lopatuxin.scola.models.Role;
 import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.services.BlockService;
@@ -99,5 +100,12 @@ public class AdminController {
     public String deleteBlock(@PathVariable("id") int id) {
         blockService.delete(id);
         return "redirect:/admin";
+    }
+
+    @GetMapping("lessons/create")
+    public String getCreationPage(@ModelAttribute("lesson")Lesson lesson, Model model,
+                                  @ModelAttribute("block") Block block) {
+        model.addAttribute("blocks", blockService.findAll());
+        return "admin/createLesson";
     }
 }
