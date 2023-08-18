@@ -1,9 +1,11 @@
 package ru.lopatuxin.scola.services;
 
 import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.lopatuxin.scola.dto.StudentDTO;
 import ru.lopatuxin.scola.models.Role;
 import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.repositories.StudentRepository;
@@ -18,11 +20,13 @@ import java.util.stream.Collectors;
 public class StudentService {
     private final StudentRepository studentRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, PasswordEncoder passwordEncoder) {
+    public StudentService(StudentRepository studentRepository, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
         this.studentRepository = studentRepository;
         this.passwordEncoder = passwordEncoder;
+        this.modelMapper = modelMapper;
     }
 
     @Transactional
@@ -73,5 +77,9 @@ public class StudentService {
      * Данный метод принимает дату рождения и высчитывает разницу между сегодняшней датой в годах*/
     private long getYear(LocalDate dateOfBirth) {
         return ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
+    }
+
+    public Student convertToStudent(StudentDTO studentDTO) {
+        return modelMapper.map(studentDTO, Student.class);
     }
 }
