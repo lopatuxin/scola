@@ -22,7 +22,7 @@ public class Block {
 
     private String description;
 
-    @OneToMany(mappedBy = "block", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "block", cascade = CascadeType.REMOVE)
     private List<Lesson> lessons;
 
     public Block(String name, String description) {

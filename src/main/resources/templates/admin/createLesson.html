@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-12">
                     <label for="description" class="form-label">Блок</label>
-                    <select class="form-select" aria-label="Блок" name="role" th:object="${blocks}">
+                    <select class="form-select" aria-label="Блок" name="blockId" th:object="${blocks}">
                         <option selected>Выберите блок</option>
                         <option th:each="block : ${blocks}" th:value="${block.getId()}" th:text="${block.getName()}"></option>
                     </select>

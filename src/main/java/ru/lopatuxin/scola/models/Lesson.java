@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "lesson")
 public class Lesson {
 
     @Id
@@ -19,7 +20,7 @@ public class Lesson {
 
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "block_id", referencedColumnName = "id")
     private Block block;
 

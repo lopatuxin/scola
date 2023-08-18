@@ -5,11 +5,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.lopatuxin.scola.dto.LessonDTO;
 import ru.lopatuxin.scola.models.Block;
 import ru.lopatuxin.scola.models.Lesson;
 import ru.lopatuxin.scola.models.Role;
 import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.services.BlockService;
+import ru.lopatuxin.scola.services.LessonService;
 import ru.lopatuxin.scola.services.StudentService;
 
 import java.util.Optional;
@@ -21,9 +23,12 @@ public class AdminController {
     private final StudentService studentService;
     private final BlockService blockService;
 
-    public AdminController(StudentService studentService, BlockService blockService) {
+    private final LessonService lessonService;
+
+    public AdminController(StudentService studentService, BlockService blockService, LessonService lessonService) {
         this.studentService = studentService;
         this.blockService = blockService;
+        this.lessonService = lessonService;
     }
 
     @ModelAttribute("user")
@@ -103,9 +108,15 @@ public class AdminController {
     }
 
     @GetMapping("lessons/create")
-    public String getCreationPage(@ModelAttribute("lesson")Lesson lesson, Model model,
+    public String getCreationPage(@ModelAttribute("lesson")LessonDTO lessonDTO, Model model,
                                   @ModelAttribute("block") Block block) {
         model.addAttribute("blocks", blockService.findAll());
         return "admin/createLesson";
+    }
+
+    @PostMapping("lessons/create")
+    public String createLesson(@ModelAttribute("lesson")LessonDTO lessonDTO) {
+        lessonService.save(lessonService.convertToLesson(lessonDTO));
+        return "redirect:/admin";
     }
 }
