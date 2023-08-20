@@ -8,3 +8,17 @@
 * Только полные проекты чтобы сразу видеть результат
 * Весь учебный процесс будет состоять из создания игр от простых к сложным
 * Минимум теории, максимум практики
+----
+## Стэк технологий:
+* Maven
+* Java 17
+* SpringBoot 3.1.1
+* Spring security
+* Spring Data
+* Spring MVC
+* Spring validation
+* Thymeleaf
+* Lomobok
+* Modelmapper 3.1.1
+* Liquebase
+* PostgreSQL
