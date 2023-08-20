@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<title>Blocks</title>
 <div th:insert="~{fragment/nav :: navigation}"></div>
+<title>Lessons</title>
 <body>
 <section class="main-content">
     <div class="container p-3">
@@ -10,14 +10,16 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Название</th>
+                <th scope="col">Блок</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="block : ${blocks}">
-                <td th:text="${block.getId()}"/>
+            <tr th:each="lesson : ${lessons}">
+                <td th:text="${lesson.getId()}"/>
                 <td>
-                    <a th:href="@{/admin/blocks/edit/{id}(id=${block.getId()})}" th:text="${block.getName()}"/>
+                    <a th:href="@{/admin/lessons/edit/{id}(id=${lesson.getId()})}" th:text="${lesson.getName()}"/>
                 </td>
+                <td th:text="${lesson.getBlock().getName()}"/>
             </tr>
             </tbody>
         </table>

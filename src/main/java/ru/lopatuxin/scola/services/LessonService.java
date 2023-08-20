@@ -38,4 +38,8 @@ public class LessonService {
     public Lesson convertToLesson(LessonDTO lessonDTO) {
         return modelMapper.map(lessonDTO, Lesson.class);
     }
+
+    public List<Lesson> findAllWithBlock() {
+        return lessonRepository.findAllWithBlock();
+    }
 }

@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.lopatuxin.scola.dto.LessonDTO;
 import ru.lopatuxin.scola.models.Block;
-import ru.lopatuxin.scola.models.Lesson;
 import ru.lopatuxin.scola.models.Role;
 import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.services.BlockService;
@@ -107,16 +106,22 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("lessons/create")
+    @GetMapping("/lessons/create")
     public String getCreationPage(@ModelAttribute("lesson")LessonDTO lessonDTO, Model model,
                                   @ModelAttribute("block") Block block) {
         model.addAttribute("blocks", blockService.findAll());
         return "admin/createLesson";
     }
 
-    @PostMapping("lessons/create")
+    @PostMapping("/lessons/create")
     public String createLesson(@ModelAttribute("lesson")LessonDTO lessonDTO) {
         lessonService.save(lessonService.convertToLesson(lessonDTO));
         return "redirect:/admin";
+    }
+
+    @GetMapping("/lessons")
+    public String getAllLessons(Model model) {
+        model.addAttribute("lessons", lessonService.findAllWithBlock());
+        return "admin/lessons";
     }
 }
