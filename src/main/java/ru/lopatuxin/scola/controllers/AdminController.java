@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.lopatuxin.scola.dto.LessonDTO;
 import ru.lopatuxin.scola.models.Block;
-import ru.lopatuxin.scola.models.Lesson;
 import ru.lopatuxin.scola.models.Role;
 import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.services.BlockService;
@@ -136,6 +135,12 @@ public class AdminController {
     @PostMapping("/lessons/edit")
     public String editLesson(@ModelAttribute("lesson")LessonDTO lessonDTO) {
         lessonService.save(lessonService.convertToLesson(lessonDTO));
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/lessons/delete/{id}")
+    public String deleteLesson(@PathVariable("id") int id) {
+        lessonService.deleteById(id);
         return "redirect:/admin";
     }
 }
