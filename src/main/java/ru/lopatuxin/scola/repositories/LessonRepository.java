@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface LessonRepository extends JpaRepository<Lesson, Integer> {
 
+    /**
+     * Данный метод необходим для вывода всех уроков с названием блока к которому относится урок*/
     @Query("from Lesson les join fetch les.block")
     List<Lesson> findAllWithBlock();
 }

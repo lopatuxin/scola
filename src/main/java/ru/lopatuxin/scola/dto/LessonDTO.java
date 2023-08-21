@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LessonDTO {
 
+    private int id;
     private String name;
     private String description;
     private int blockId;

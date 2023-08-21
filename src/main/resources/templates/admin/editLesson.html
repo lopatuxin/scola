@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<title>EditLesson</title>
+<div th:insert="~{fragment/nav :: navigation}"></div>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <form class="mt-3" method="post" th:action="@{/admin/lessons/edit}"
+            th:object="${lesson}">
+        <input type="hidden" name="id" th:value="${lesson.id}">
+        <div class="col-12">
+          <label for="name" class="form-label">Название</label>
+          <input type="text" th:field="*{name}" class="form-control" id="name">
+        </div>
+        <div class="col-12">
+          <label for="description" class="form-label">Описание</label>
+          <textarea class="form-control" th:field="*{description}" id="description" rows="3"></textarea>
+        </div>
+        <div class="col-12">
+          <label for="description" class="form-label">Блок</label>
+          <select class="form-select" aria-label="Блок" name="blockId">
+            <option selected th:value="${lesson.block.id}" th:text="${lesson.block.name}">Выберите блок</option>
+            <option th:each="block : ${blocks}" th:value="${block.id}" th:text="${block.getName()}"></option>
+          </select>
+        </div>
+        <div class="d-grid gap-2 pt-2">
+          <button class="btn btn-lg btn-success" type="submit">Сохранить</button>
+          <a class="btn btn-lg btn-danger" th:href="@{/admin/lessons}" role="button">Отмена</a>
+          <a class="btn btn-lg btn-primary" th:href="@{/admin/lessons/delete/{id}(id=${lesson.getId()})}" role="button">Удалить</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
