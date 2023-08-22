@@ -55,13 +55,23 @@ public class AdminController {
 
     @GetMapping("/students/{id}")
     public String getStudent(@PathVariable int id, Model model) {
-        model.addAttribute("student", studentService.findById(id).get());
+        var student = studentService.findById(id);
+        if (student.isEmpty()) {
+            model.addAttribute("error", "Not Found");
+            return "errors/404";
+        }
+        model.addAttribute("student", student.get());
         return "admin/student";
     }
 
     @GetMapping("/students/update/{id}")
     public String getUpdateStudentPage(@PathVariable("id") int id, Model model) {
-        model.addAttribute("student", studentService.findById(id).get());
+        var student = studentService.findById(id);
+        if (student.isEmpty()) {
+            model.addAttribute("error", "Not Found");
+            return "errors/404";
+        }
+        model.addAttribute("student", student.get());
         return "admin/editStudent";
     }
 
@@ -90,7 +100,12 @@ public class AdminController {
 
     @GetMapping("/blocks/edit/{id}")
     public String getEditPageBlock(@PathVariable("id") int id, Model model) {
-        model.addAttribute("block", blockService.findById(id).get());
+        var block = blockService.findById(id);
+        if (block.isEmpty()) {
+            model.addAttribute("error", "Not Found");
+            return "errors/404";
+        }
+        model.addAttribute("block", block.get());
         return "admin/editBlock";
     }
 
@@ -127,7 +142,12 @@ public class AdminController {
 
     @GetMapping("lessons/edit/{id}")
     public String getEditPageLesson(@PathVariable("id") int id, Model model) {
-        model.addAttribute("lesson", lessonService.findById(id).get());
+        var lesson = lessonService.findById(id);
+        if (lesson.isEmpty()) {
+            model.addAttribute("error", "Not Found");
+            return "errors/404";
+        }
+        model.addAttribute("lesson", lesson.get());
         model.addAttribute("blocks", blockService.findAll());
         return "admin/editLesson";
     }
