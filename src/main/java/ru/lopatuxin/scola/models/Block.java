@@ -28,4 +28,8 @@ public class Block {
         this.name = name;
         this.description = description;
     }
+
+    public Block(int id) {
+        this.id = id;
+    }
 }

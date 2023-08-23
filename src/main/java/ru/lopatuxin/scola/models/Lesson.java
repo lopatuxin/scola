@@ -1,6 +1,7 @@
 package ru.lopatuxin.scola.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name = "lesson")
+@AllArgsConstructor
 public class Lesson {
 
     @Id
