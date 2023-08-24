@@ -43,4 +43,18 @@ class AdminControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(view().name("admin/students"));
     }
+
+    @Test
+    void getBlocks() throws Exception {
+        mockMvc.perform(get("/admin/blocks"))
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(view().name("admin/blocks"));
+    }
+
+    @Test
+    void getCreateBlockPage() throws Exception {
+        mockMvc.perform(get("/admin/blocks/create"))
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(view().name("admin/createBlock"));
+    }
 }
