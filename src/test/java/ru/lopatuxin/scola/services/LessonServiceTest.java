@@ -62,7 +62,7 @@ class LessonServiceTest {
     @Test
     void convertToLesson() {
         LessonDTO lessonDTO = new LessonDTO(1, "Test", "Test", 1);
-        Lesson lesson1 = new Lesson(1, "Test", "Test", new Block(1));
+        Lesson lesson1 = new Lesson(1, "Test", "Test", new Block(1, "TEst", "Test"));
         assertEquals(lesson1, lessonService.convertToLesson(lessonDTO));
     }
 }
