@@ -101,4 +101,18 @@ class AdminControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(view().name("admin/editBlock"));
     }
+
+    @Test
+    void editBlock() throws Exception {
+        Block block = new Block(1, "Test", "Test");
+        Mockito.when(blockService.findById(Mockito.anyInt())).thenReturn(Optional.of(block));
+        mockMvc.perform(post("/admin/blocks/edit/{id}", 1)
+                        .with(csrf())
+                        .param("name", "Test2"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/admin"));
+        ArgumentCaptor<Block> argumentCaptor = ArgumentCaptor.forClass(Block.class);
+        verify(blockService).create(argumentCaptor.capture());
+        assertEquals(argumentCaptor.getValue().getName(), "Test2");
+    }
 }

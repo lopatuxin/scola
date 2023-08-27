@@ -9,6 +9,7 @@
         <div class="col-6">
             <form class="mt-3" method="post" th:action="@{/admin/blocks/edit/{id}(id=${block.getId()})}"
                   th:object="${block}">
+                <input type="hidden" name="id" th:value="${block.id}">
                 <div class="col-12">
                     <label for="name" class="form-label">Название</label>
                     <input type="text" th:field="*{name}" class="form-control" id="name">
