@@ -21,8 +21,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -114,5 +113,17 @@ class AdminControllerTest {
         ArgumentCaptor<Block> argumentCaptor = ArgumentCaptor.forClass(Block.class);
         verify(blockService).create(argumentCaptor.capture());
         assertEquals(argumentCaptor.getValue().getName(), "Test2");
+    }
+
+    @Test
+    void deleteBlock() throws Exception {
+        Block block = new Block(1, "Test", "Test");
+        Mockito.when(blockService.findById(Mockito.anyInt())).thenReturn(Optional.of(block));
+        mockMvc.perform(get("/admin/delete/{id}", 1))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/admin"));
+        ArgumentCaptor<Integer> argumentCaptor = ArgumentCaptor.forClass(Integer.class);
+        verify(blockService).delete(argumentCaptor.capture());
+        assertEquals(argumentCaptor.getValue().intValue(), 1);
     }
 }
