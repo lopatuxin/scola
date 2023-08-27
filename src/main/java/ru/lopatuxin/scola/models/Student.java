@@ -2,6 +2,7 @@ package ru.lopatuxin.scola.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -13,9 +14,9 @@ import java.time.LocalDate;
  * Модель данных ученика
  * @field role Данное поле содержит роль юзера в приложении*/
 @Entity
-@Table(name = "Student")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,7 +54,7 @@ public class Student {
     @Transient
     private long age;
 
-    public Student(String name, String surname, String email, String password, LocalDate dateOfBirth) {
+    public Student(String name, String surname, String email, String password, @NotNull LocalDate dateOfBirth) {
         this.name = name;
         this.surname = surname;
         this.email = email;
