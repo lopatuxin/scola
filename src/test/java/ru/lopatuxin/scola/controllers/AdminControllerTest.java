@@ -103,9 +103,7 @@ class AdminControllerTest {
 
     @Test
     void editBlock() throws Exception {
-        Block block = new Block(1, "Test", "Test");
-        Mockito.when(blockService.findById(Mockito.anyInt())).thenReturn(Optional.of(block));
-        mockMvc.perform(post("/admin/blocks/edit/{id}", 1)
+        mockMvc.perform(post("/admin/blocks/edit")
                         .with(csrf())
                         .param("name", "Test2"))
                 .andExpect(status().is3xxRedirection())

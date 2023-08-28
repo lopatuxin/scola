@@ -23,7 +23,7 @@ public class Block {
 
     private String description;
 
-    @OneToMany(mappedBy = "block", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "block", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Lesson> lessons;
 
     public Block(String name, String description) {

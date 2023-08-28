@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <form class="mt-3" method="post" th:action="@{/admin/blocks/edit/{id}(id=${block.getId()})}"
+            <form class="mt-3" method="post" th:action="@{/admin/blocks/edit}"
                   th:object="${block}">
                 <input type="hidden" name="id" th:value="${block.id}">
                 <div class="col-12">

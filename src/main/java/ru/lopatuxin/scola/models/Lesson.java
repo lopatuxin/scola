@@ -21,8 +21,7 @@ public class Lesson {
 
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "block_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Block block;
 
     public Lesson(String name, String description) {

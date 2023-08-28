@@ -109,8 +109,8 @@ public class AdminController {
         return "admin/editBlock";
     }
 
-    @PostMapping("/blocks/edit/{id}")
-    public String editBlock(@PathVariable("id") int id, @ModelAttribute("block") Block block) {
+    @PostMapping("/blocks/edit")
+    public String editBlock(@ModelAttribute("block") Block block) {
         blockService.create(block);
         return "redirect:/admin";
     }
