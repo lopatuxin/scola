@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<title>Blocks</title>
+<div th:insert="~{fragment/userNavigation :: navigation}"></div>
+<body>
+<section class="main-content">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card" th:each="block : ${blocks}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${block.name}">Name</h5>
+                    <p class="card-text" th:text="${block.description}">Text</p>
+                    <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
