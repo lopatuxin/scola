@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.services.BlockService;
@@ -33,9 +34,15 @@ public class BlockController {
         return student.map(value -> value.getName() + " " + value.getSurname()).orElse("User");
     }
 
-    @GetMapping
+    @GetMapping("/blocks")
     public String getBlocksPage(Model model) {
         model.addAttribute("blocks", blockService.findAll());
         return "block/blocks";
+    }
+
+    @GetMapping("/{id}")
+    public String getBlockPage(@PathVariable("id") int id, Model model) {
+        model.addAttribute("block", blockService.findById(id));
+        return "block/block";
     }
 }

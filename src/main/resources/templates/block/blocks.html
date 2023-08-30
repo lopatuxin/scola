@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${block.name}">Name</h5>
                     <p class="card-text" th:text="${block.description}">Text</p>
-                    <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
+                    <a th:href="@{/block/{id} (id=${block.getId()})}" class="btn btn-primary">Открыть блок</a>
                 </div>
             </div>
         </div>
