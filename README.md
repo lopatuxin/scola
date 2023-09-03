@@ -22,3 +22,6 @@
 * Modelmapper 3.1.1
 * Liquebase
 * PostgreSQL
+----
+### Страница регистрации
+<image src="/images/reg.png" alt="Страница регистрации"></image>

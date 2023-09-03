@@ -43,6 +43,7 @@ public class BlockController {
     @GetMapping("/{id}")
     public String getBlockPage(@PathVariable("id") int id, Model model) {
         model.addAttribute("block", blockService.findById(id));
+        model.addAttribute("lessons", blockService.findAllLessonByBlockId(id));
         return "block/block";
     }
 }

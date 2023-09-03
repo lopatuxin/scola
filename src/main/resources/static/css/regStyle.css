@@ -1,0 +1,23 @@
+.card {
+    border-radius: 5px; /* Задаем скругление углов карточки */
+}
+
+.card-header.custom-header {
+    background-color: #505160; /* Задаем фоновый цвет заголовка */
+}
+
+.card-header.custom-header h2 {
+    color: #FFFFFF; /* Задаем цвет текста заголовка */
+}
+
+.card-body {
+    background-color: #505160; /* Задаем фоновый цвет содержимого */
+    padding: 20px; /* Добавляем отступы вокруг содержимого */
+    border-radius: 5px; /* Задаем скругление углов содержимого */
+    color: #FFFFFF; /* Задаем цвет текста содержимого */
+}
+ .custom-button {
+     width: 200px; /* Задайте желаемую ширину кнопки */
+     height: 40px; /* Задайте желаемую высоту кнопки */
+     margin-right: 10px;
+ }

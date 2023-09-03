@@ -3,6 +3,7 @@ package ru.lopatuxin.scola.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lopatuxin.scola.models.Block;
+import ru.lopatuxin.scola.models.Lesson;
 import ru.lopatuxin.scola.repositories.BlockRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,5 +42,9 @@ public class BlockService {
     @Transactional
     public void delete(int id) {
         blockRepository.deleteById(id);
+    }
+
+    public List<Lesson> findAllLessonByBlockId(int id) {
+        return blockRepository.findAllLessonsByBLockId(id);
     }
 }
