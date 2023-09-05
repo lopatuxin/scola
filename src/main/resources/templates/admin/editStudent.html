@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <form class="mt-3" method="post" th:action="@{/admin/students/update}">
+            <form class="mt-3" method="post" th:action="@{/student/update}">
                 <input type="hidden" name="id" th:value="${student.getId()}">
                 <h4 style="color: black" class="text-center" th:text="|${student.getName()} ${student.getSurname()}|"/>
                 <hr/>
@@ -18,7 +18,7 @@
                 </select>
                 <div class="d-grid gap-2 pt-2">
                     <button class="btn btn-lg btn-success" type="submit">Сохранить</button>
-                    <a class="btn btn-lg btn-danger" th:href="@{/admin/students/{id}(id=${student.getId()})}" role="button">Отмена</a>
+                    <a class="btn btn-lg btn-danger" th:href="@{/student/{id}(id=${student.getId()})}" role="button">Отмена</a>
                 </div>
             </form>
         </div>

@@ -12,7 +12,7 @@
                     <li class="list-group-item" th:text="${student.getDateOfRegistration()}">A second item</li>
                     <li class="list-group-item" th:text="${student.getEmail()}">A third item</li>
                 </ul>
-                <a class="btn btn-primary" th:href="@{/admin/students/update/{id}(id=${student.getId()})}">Редактировать</a>
+                <a class="btn btn-primary" th:href="@{/student/update/{id}(id=${student.getId()})}">Редактировать</a>
             </div>
         </div>
     </div>

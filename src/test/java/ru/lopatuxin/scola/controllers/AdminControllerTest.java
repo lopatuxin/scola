@@ -14,11 +14,8 @@ import ru.lopatuxin.scola.config.DataSourceConfig;
 import ru.lopatuxin.scola.dto.LessonDTO;
 import ru.lopatuxin.scola.models.Block;
 import ru.lopatuxin.scola.models.Lesson;
-import ru.lopatuxin.scola.models.Role;
-import ru.lopatuxin.scola.models.Student;
 import ru.lopatuxin.scola.services.BlockService;
 import ru.lopatuxin.scola.services.LessonService;
-import ru.lopatuxin.scola.services.StudentService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,9 +39,6 @@ class AdminControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private StudentService studentService;
-
-    @MockBean
     private BlockService blockService;
 
     @MockBean
@@ -55,92 +49,6 @@ class AdminControllerTest {
         mockMvc.perform(get("/admin"))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(view().name("admin/admin"));
-    }
-
-    @Test
-    void getStudents() throws Exception {
-        List<Student> students = Arrays.asList(
-                Student.builder()
-                        .name("Test1")
-                        .surname("Test1")
-                        .build(),
-                Student.builder()
-                        .name("Test2")
-                        .surname("Test2")
-                        .build()
-        );
-        when(studentService.findAll()).thenReturn(students);
-        mockMvc.perform(get("/admin/students"))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(view().name("admin/students"))
-                .andExpect(model().attribute("students", students));
-    }
-
-    @Test
-    void getStudentsWithSubscription() throws Exception {
-        List<Student> students = Arrays.asList(
-                Student.builder()
-                        .name("Test1")
-                        .surname("Test1")
-                        .role(Role.USER)
-                        .build(),
-                Student.builder()
-                        .name("Test2")
-                        .surname("Test2")
-                        .role(Role.USER)
-                        .build()
-        );
-        when(studentService.findByRole(Role.USER)).thenReturn(students);
-        mockMvc.perform(get("/admin/students/subscription"))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(view().name("admin/students"))
-                .andExpect(model().attribute("students", students));
-    }
-
-    @Test
-    void getStudent() throws Exception {
-        Student student = Student.builder()
-                .id(1)
-                .name("Test")
-                .build();
-        when(studentService.findById(1)).thenReturn(Optional.of(student));
-        mockMvc.perform(get("/admin/students/{id}", 1))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(view().name("admin/student"))
-                .andExpect(model().attribute("student", student));
-    }
-
-    @Test
-    void whenStudentNotFound() throws Exception {
-        when(studentService.findById(1)).thenReturn(Optional.empty());
-        mockMvc.perform(get("/admin/students/{id}", 1))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(view().name("errors/404"))
-                .andExpect(model().attributeExists("error"));
-    }
-
-    @Test
-    void getUpdateStudentPage() throws Exception {
-        Student student = Student.builder()
-                .id(1)
-                .name("Test")
-                .build();
-        when(studentService.findById(1)).thenReturn(Optional.of(student));
-        mockMvc.perform(get("/admin/students/update/{id}", 1))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(view().name("admin/editStudent"))
-                .andExpect(model().attribute("student", student));
-    }
-
-    @Test
-    void updateStudent() throws Exception {
-        mockMvc.perform(post("/admin/students/update")
-                        .param("id", "1")
-                        .param("role", "USER")
-                        .with(csrf()))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/admin"));
-        verify(studentService).updateStudentByRole("USER", 1);
     }
 
     @Test

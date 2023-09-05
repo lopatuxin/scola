@@ -41,40 +41,6 @@ public class AdminController {
         return "admin/admin";
     }
 
-    @GetMapping("/students")
-    public String getStudents(Model model) {
-        model.addAttribute("students", studentService.findAll());
-        return "admin/students";
-    }
-
-    @GetMapping("/students/subscription")
-    public String getStudentsWithSubscription(Model model) {
-        model.addAttribute("students", studentService.findByRole(Role.USER));
-        return "admin/students";
-    }
-
-    @GetMapping("/students/{id}")
-    public String getStudent(@PathVariable int id, Model model) {
-        var student = studentService.findById(id);
-        if (student.isEmpty()) {
-            model.addAttribute("error", "Not Found");
-            return "errors/404";
-        }
-        model.addAttribute("student", student.get());
-        return "admin/student";
-    }
-
-    @GetMapping("/students/update/{id}")
-    public String getUpdateStudentPage(@PathVariable("id") int id, Model model) {
-        var student = studentService.findById(id);
-        if (student.isEmpty()) {
-            model.addAttribute("error", "Not Found");
-            return "errors/404";
-        }
-        model.addAttribute("student", student.get());
-        return "admin/editStudent";
-    }
-
     @PostMapping("/students/update")
     public String updateStudent(@RequestParam("id") int id, @RequestParam("role") String role) {
         studentService.updateStudentByRole(role, id);

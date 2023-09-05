@@ -18,7 +18,7 @@
             <tr th:each="student : ${students}">
                 <td th:text="${student.getId()}"/>
                 <td>
-                    <a th:href="@{/admin/students/{id}(id=${student.getId()})}" th:text="${student.getName()}"/>
+                    <a th:href="@{/student/{id}(id=${student.getId()})}" th:text="${student.getName()}"/>
                 </td>
                 <td th:text="${student.getSurname()}"/>
                 <td th:text="${student.getAge()}"/>
