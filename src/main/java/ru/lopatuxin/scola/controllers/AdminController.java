@@ -41,52 +41,6 @@ public class AdminController {
         return "admin/admin";
     }
 
-    @PostMapping("/students/update")
-    public String updateStudent(@RequestParam("id") int id, @RequestParam("role") String role) {
-        studentService.updateStudentByRole(role, id);
-        return "redirect:/admin";
-    }
-
-    @GetMapping("/blocks")
-    public String getBlocks(Model model) {
-        model.addAttribute("blocks", blockService.findAll());
-        return "admin/blocks";
-    }
-
-    @GetMapping("/blocks/create")
-    public String getCreateBlockPage(@ModelAttribute("block")Block block) {
-        return "admin/createBlock";
-    }
-
-    @PostMapping("/blocks/create")
-    public String createBlock(@ModelAttribute("block") Block block) {
-        blockService.create(block);
-        return "redirect:/admin";
-    }
-
-    @GetMapping("/blocks/edit/{id}")
-    public String getEditPageBlock(@PathVariable("id") int id, Model model) {
-        var block = blockService.findById(id);
-        if (block.isEmpty()) {
-            model.addAttribute("error", "Not Found");
-            return "errors/404";
-        }
-        model.addAttribute("block", block.get());
-        return "admin/editBlock";
-    }
-
-    @PostMapping("/blocks/edit")
-    public String editBlock(@ModelAttribute("block") Block block) {
-        blockService.create(block);
-        return "redirect:/admin";
-    }
-
-    @GetMapping("/delete/{id}")
-    public String deleteBlock(@PathVariable("id") int id) {
-        blockService.delete(id);
-        return "redirect:/admin";
-    }
-
     @GetMapping("/lessons/create")
     public String getCreationPage(@ModelAttribute("lesson")LessonDTO lessonDTO, Model model,
                                   @ModelAttribute("block") Block block) {

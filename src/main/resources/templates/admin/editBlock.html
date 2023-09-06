@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <form class="mt-3" method="post" th:action="@{/admin/blocks/edit}"
+            <form class="mt-3" method="post" th:action="@{/block/blocks/edit}"
                   th:object="${block}">
                 <input type="hidden" name="id" th:value="${block.id}">
                 <div class="col-12">
@@ -20,8 +20,8 @@
                 </div>
                 <div class="d-grid gap-2 pt-2">
                     <button class="btn btn-lg btn-success" type="submit">Сохранить</button>
-                    <a class="btn btn-lg btn-danger" th:href="@{/admin/blocks}" role="button">Отмена</a>
-                    <a class="btn btn-lg btn-primary" th:href="@{/admin/delete/{id}(id=${block.getId()})}" role="button">Удалить</a>
+                    <a class="btn btn-lg btn-danger" th:href="@{/block/admin/blocks}" role="button">Отмена</a>
+                    <a class="btn btn-lg btn-primary" th:href="@{/block/delete/{id}(id=${block.getId()})}" role="button">Удалить</a>
                 </div>
             </form>
         </div>

@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <form class="mt-3" method="post" th:action="@{/admin/blocks/create}" th:object="${block}">
+            <form class="mt-3" method="post" th:action="@{/block/blocks/create}" th:object="${block}">
                 <div class="col-12">
                     <label for="name" class="form-label">Название</label>
                     <input type="text" th:field="*{name}" class="form-control" id="name">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="d-grid gap-2 pt-2">
                     <button class="btn btn-lg btn-success" type="submit">Сохранить</button>
-                    <a class="btn btn-lg btn-danger" th:href="@{/admin/blocks}" role="button">Отмена</a>
+                    <a class="btn btn-lg btn-danger" th:href="@{/block/admin/blocks}" role="button">Отмена</a>
                 </div>
             </form>
         </div>
