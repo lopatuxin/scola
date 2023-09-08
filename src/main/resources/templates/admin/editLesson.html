@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-3"></div>
     <div class="col-6">
-      <form class="mt-3" method="post" th:action="@{/admin/lessons/edit}"
+      <form class="mt-3" method="post" th:action="@{/lesson/create}"
             th:object="${lesson}">
         <input type="hidden" name="id" th:value="${lesson.id}">
         <div class="col-12">
@@ -27,8 +27,8 @@
         </div>
         <div class="d-grid gap-2 pt-2">
           <button class="btn btn-lg btn-success" type="submit">Сохранить</button>
-          <a class="btn btn-lg btn-danger" th:href="@{/admin/lessons}" role="button">Отмена</a>
-          <a class="btn btn-lg btn-primary" th:href="@{/admin/lessons/delete/{id}(id=${lesson.getId()})}" role="button">Удалить</a>
+          <a class="btn btn-lg btn-danger" th:href="@{/lesson/lessons}" role="button">Отмена</a>
+          <a class="btn btn-lg btn-primary" th:href="@{/lesson/delete/{id}(id=${lesson.getId()})}" role="button">Удалить</a>
         </div>
       </form>
     </div>

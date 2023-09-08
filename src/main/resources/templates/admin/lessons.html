@@ -17,7 +17,7 @@
             <tr th:each="lesson : ${lessons}">
                 <td th:text="${lesson.getId()}"/>
                 <td>
-                    <a th:href="@{/admin/lessons/edit/{id}(id=${lesson.getId()})}" th:text="${lesson.getName()}"/>
+                    <a th:href="@{/lesson/edit/{id}(id=${lesson.getId()})}" th:text="${lesson.getName()}"/>
                 </td>
                 <td th:text="${lesson.getBlock().getName()}"/>
             </tr>
