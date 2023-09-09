@@ -8,4 +8,5 @@
     <include file="../001_ddl_create_table_student.sql" relativeToChangelogFile="true"/>
     <include file="../002_ddl_create_table_block.sql" relativeToChangelogFile="true"/>
     <include file="../003_ddl_create_table_lesson.sql" relativeToChangelogFile="true"/>
+    <include file="../004_ddl_alter_table_student.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

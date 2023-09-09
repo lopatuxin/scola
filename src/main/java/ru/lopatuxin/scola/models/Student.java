@@ -50,6 +50,8 @@ public class Student {
     @Column(name = "date_of_registration")
     private LocalDate dateOfRegistration;
 
+    private int level;
+
     @Transient
     private long age;
 
