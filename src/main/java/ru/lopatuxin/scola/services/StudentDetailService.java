@@ -1,8 +1,6 @@
 package ru.lopatuxin.scola.services;
 
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,16 +11,24 @@ import ru.lopatuxin.scola.security.StudentDetails;
 
 import java.util.Optional;
 
+/**
+ * Класс {@code StudentDetailService} реализует интерфейс {@link UserDetailsService},
+ * чтобы предоставлять детали пользователя для аутентификации Spring Security.
+ * Он загружает детали пользователя на основе предоставленного имени пользователя (email).
+ */
 @Service
+@RequiredArgsConstructor
 public class StudentDetailService implements UserDetailsService {
 
     private final StudentRepository studentRepository;
 
-    @Autowired
-    public StudentDetailService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
-
+    /**
+     * Загружает детали пользователя по заданному имени пользователя (email).
+     *
+     * @param username Имя пользователя (email), для которого нужно загрузить детали пользователя.
+     * @return Экземпляр {@link UserDetails}, содержащий детали пользователя.
+     * @throws UsernameNotFoundException Если пользователь с предоставленным именем пользователя не найден.
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Student> user = studentRepository.findByEmail(username);
