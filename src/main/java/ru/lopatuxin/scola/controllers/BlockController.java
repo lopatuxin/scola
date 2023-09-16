@@ -127,18 +127,6 @@ public class BlockController {
     }
 
     /**
-     * Обработка POST-запроса для редактирования блока обучения.
-     *
-     * @param block Объект блока обучения, переданный из формы.
-     * @return Перенаправление на административную страницу после редактирования блока.
-     */
-    @PostMapping("/blocks/edit")
-    public String editBlock(@ModelAttribute("block") Block block) {
-        blockService.create(block);
-        return "redirect:/admin";
-    }
-
-    /**
      * Удаление блока обучения по его идентификатору.
      *
      * @param id Идентификатор блока обучения, который требуется удалить.

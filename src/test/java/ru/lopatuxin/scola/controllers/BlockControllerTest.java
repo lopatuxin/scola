@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -133,21 +132,6 @@ class BlockControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(view().name("admin/editBlock"))
                 .andExpect(model().attribute("block", block));
-    }
-
-    @Test
-    void editBlock() throws Exception {
-        Block block = Block.builder()
-                .name("Test")
-                .description("Test")
-                .build();
-        mockMvc.perform(post("/block/blocks/edit")
-                        .with(csrf())
-                        .param("name", block.getName())
-                        .param("description", block.getDescription()))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/admin"));
-        verify(blockService).create(block);
     }
 
     @Test
