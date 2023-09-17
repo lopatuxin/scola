@@ -35,6 +35,10 @@ public class Block {
         this.description = description;
     }
 
+    public Block(int id) {
+        this.id = id;
+    }
+
     public void addLesson(Lesson lesson) {
         lessons.add(lesson);
         lesson.setBlock(this);
